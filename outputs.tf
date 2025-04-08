@@ -32,11 +32,13 @@ output "walrus_resource_id" {
   description = "The id of resource where deployed in Walrus."
 }
 
-#
-# Submodule output
-#
 
-output "submodule" {
-  value       = module.submodule.message
-  description = "The message from submodule."
+output "esxi_iso_url" {
+  value = "http://${module.esxi_builder_instance.instance_ips[0]}/iso/esxi-ks.iso"
+  description = "ESXi  下载地址"
+}
+
+output "service_ip" {
+  description = "Service IP"
+  value       = module.esxi_builder_instance.instance_ips[0]
 }
