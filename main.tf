@@ -74,8 +74,7 @@ resource "terraform_data" "remote_exec" {
       "if [ ! -f '${var.esxi_iso_filename}' ]; then wget -q ${var.esxi_iso_url} -O ${var.esxi_iso_filename}; fi",
       "sudo ./esxi_ks_iso.sh -i ${var.esxi_iso_filename} -k KS.CFG",
       "sudo cp /dev/shm/esxibuilder/esxi-ks.iso /var/www/html/iso/",
-      "sudo chmod 644 /var/www/html/iso/*.iso",
-      "echo 'Custom ESXi ISO available at: http://${zstack_instance.iso_builder.vm_nics[0].ip}/iso/'"
+      "sudo chmod 644 /var/www/html/iso/*.iso"
     ]
     on_failure = fail
   }
