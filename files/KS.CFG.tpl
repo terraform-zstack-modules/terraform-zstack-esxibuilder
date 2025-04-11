@@ -4,7 +4,7 @@ rootpw ${esxi_root_password}
 
 install --firstdisk --overwritevmfs
 
-network --bootproto=dhcp
+network --bootproto=dhcp --device=vmnic0
 
 reboot
 

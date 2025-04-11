@@ -100,3 +100,9 @@ variable "esxi_iso_filename" {
   type        = string
   default     = "VMware-VMvisor-Installer-6.5.0.update01-5969303.x86_64.iso"
 }
+
+variable "expunge" {
+  type  = bool
+  default = true
+}
+
