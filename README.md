@@ -59,3 +59,7 @@
 | <a name="output_walrus_resource_id"></a> [walrus\_resource\_id](#output\_walrus\_resource\_id) | The id of resource where deployed in Walrus. |
 | <a name="output_walrus_resource_name"></a> [walrus\_resource\_name](#output\_walrus\_resource\_name) | The name of resource where deployed in Walrus. |
 <!-- END_TF_DOCS -->
+
+## 注意事项
+- 目前只支持6.5, 6.7的esxi构建
+- 基础镜像url: http://192.168.200.100/mirror/iso/vmware/VMware_iso/ 

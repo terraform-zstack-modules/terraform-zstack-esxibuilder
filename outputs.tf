@@ -42,3 +42,9 @@ output "service_ip" {
   description = "Service IP"
   value       = module.esxi_builder_instance.instance_ips[0]
 }
+
+output "endpoints" {
+  value = {
+    esxi_iso_url = "http://${module.esxi_builder_instance.instance_ips[0]}/iso/esxi-ks.iso"
+  }
+}
