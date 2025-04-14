@@ -3,7 +3,7 @@ locals {
 }
 
 module "esxi_builder_image" {
-  source = "git::http://172.20.14.17/jiajian.chi/terraform-zstack-image.git"
+  source = "git::https://github.com/terraform-zstack-modules/terraform-zstack-image.git"
 
   create_image        = true
   image_name          = var.image_name
@@ -12,12 +12,12 @@ module "esxi_builder_image" {
   platform           = "Linux"
   format             = "qcow2"
   architecture       = "x86_64"
-
+  expunge            = var.expunge
   backup_storage_name = var.backup_storage_name
 }
 
 module "esxi_builder_instance" {
-  source = "git::http://172.20.14.17/jiajian.chi/terraform-zstack-instance.git"
+  source = "git::https://github.com/chijiajian/terraform-zstack-instance.git"
 
   name                  = var.instance_name
   description           = "esxi_builder Created by Terraform devops"
@@ -25,6 +25,7 @@ module "esxi_builder_instance" {
   image_uuid            = module.esxi_builder_image.image_uuid
   l3_network_name       = var.l3_network_name
   instance_offering_name = var.instance_offering_name
+  expunge            = var.expunge
 }
 
 resource "local_file" "ks_cfg" {
@@ -74,8 +75,7 @@ resource "terraform_data" "remote_exec" {
       "if [ ! -f '${var.esxi_iso_filename}' ]; then wget -q ${var.esxi_iso_url} -O ${var.esxi_iso_filename}; fi",
       "sudo ./esxi_ks_iso.sh -i ${var.esxi_iso_filename} -k KS.CFG",
       "sudo cp /dev/shm/esxibuilder/esxi-ks.iso /var/www/html/iso/",
-      "sudo chmod 644 /var/www/html/iso/*.iso",
-      "echo 'Custom ESXi ISO available at: http://${zstack_instance.iso_builder.vm_nics[0].ip}/iso/'"
+      "sudo chmod 644 /var/www/html/iso/*.iso"
     ]
     on_failure = fail
   }

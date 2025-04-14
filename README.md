@@ -4,7 +4,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_zstack"></a> [zstack](#requirement\_zstack) | 1.0.5 |
+| <a name="requirement_zstack"></a> [zstack](#requirement\_zstack) | 1.0.7 |
 
 ## Providers
 
@@ -17,8 +17,8 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_esxi_builder_image"></a> [esxi\_builder\_image](#module\_esxi\_builder\_image) | git::http://172.20.14.17/jiajian.chi/terraform-zstack-image.git | n/a |
-| <a name="module_esxi_builder_instance"></a> [esxi\_builder\_instance](#module\_esxi\_builder\_instance) | git::http://172.20.14.17/jiajian.chi/terraform-zstack-instance.git | n/a |
+| <a name="module_esxi_builder_image"></a> [esxi\_builder\_image](#module\_esxi\_builder\_image) | git::http://172.20.14.17/jiajian.chi/terraform-zstack-image.git | v1.1.1 |
+| <a name="module_esxi_builder_instance"></a> [esxi\_builder\_instance](#module\_esxi\_builder\_instance) | git::http://172.20.14.17/jiajian.chi/terraform-zstack-instance.git | v1.1.1 |
 
 ## Resources
 
@@ -36,6 +36,7 @@
 | <a name="input_esxi_iso_filename"></a> [esxi\_iso\_filename](#input\_esxi\_iso\_filename) | ESXi ISO文件名 | `string` | `"VMware-VMvisor-Installer-6.5.0.update01-5969303.x86_64.iso"` | no |
 | <a name="input_esxi_iso_url"></a> [esxi\_iso\_url](#input\_esxi\_iso\_url) | URL to download the ESXi ISO from | `string` | `"http://192.168.200.100/mirror/iso/vmware/VMware_iso/VMware-VMvisor-Installer-6.5.0.update01-5969303.x86_64.iso"` | no |
 | <a name="input_esxi_root_password"></a> [esxi\_root\_password](#input\_esxi\_root\_password) | Root password for the ESXi installation | `string` | `"ZStack@123"` | no |
+| <a name="input_expunge"></a> [expunge](#input\_expunge) | n/a | `bool` | `true` | no |
 | <a name="input_image_name"></a> [image\_name](#input\_image\_name) | Name for the esxi\_builder image | `string` | `"esxi_builder_by_terraform"` | no |
 | <a name="input_image_url"></a> [image\_url](#input\_image\_url) | URL to download the image from | `string` | `"http://minio.zstack.io:9000/packer/redis-by-packer-image-compressed.qcow2"` | no |
 | <a name="input_instance_name"></a> [instance\_name](#input\_instance\_name) | Name for the esxi\_builder instance | `string` | `"esxi_builder"` | no |
@@ -58,3 +59,7 @@
 | <a name="output_walrus_resource_id"></a> [walrus\_resource\_id](#output\_walrus\_resource\_id) | The id of resource where deployed in Walrus. |
 | <a name="output_walrus_resource_name"></a> [walrus\_resource\_name](#output\_walrus\_resource\_name) | The name of resource where deployed in Walrus. |
 <!-- END_TF_DOCS -->
+
+## 注意事项
+- 目前只支持6.5, 6.7的esxi构建
+- 基础镜像url: http://192.168.200.100/mirror/iso/vmware/VMware_iso/ 
